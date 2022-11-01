@@ -14,11 +14,12 @@ def main():
     r = requests.get("https://www.youtube.com/oembed?url=" + url, allow_redirects=True)
     open(os.path.dirname(__file__) + "\media\kimenet.json", 'wb').write(r.content)
     
-    info=[(line[0:int(line.find("-"))-1],line[int(line.find("-"))+2:-1]) for line in bemenet]
+    info=[(line[0:int(line.find("-"))-1],line[int(line.find("-"))+2:-1]) if (line.find("-")!=-1 and line.find(":")!=-1 and (str(line[0:line.find(":")])).isnumeric() and int(line[0:line.find(":")])<60 and int(line[line.find(":")+1:line.find("-")-1]))<60 else (line,"Névtelen") if url==url else (line,"Névtelen") for line in bemenet]
     
     bemenet.close()
     
-    links=[]
+    links=[l[0] for l in info]
+    print(links)
     
     kimenet=open("kimenet.html", "w", encoding='utf8')
     kimenet.write("")
