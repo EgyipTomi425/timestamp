@@ -2,7 +2,7 @@
 --------------------------
 
 A program futtatásához szükséges a Python 3.10 és a requests API.
-Az előző Linuxon alapból telepítve van, Windowson, ha letöltjük a Visual Studio Code alkalmazást, akkor ott telepíthetjük a Python 3.10 fordítót.
+Az előző Linuxon alapból telepítve van, Windowson, ha letöltjük a Visual Studio Code alkalmazást vagy megkeressük a Microsoft Store webáruházban, akkor ott telepíthetjük a Python 3.10 fordítót.
 
 Ha van python a gépünkön, de nincs requests API, írjuk be az alábbi parancsot:
 
@@ -21,6 +21,7 @@ Lépések:
 3. Második sortól írjuk be, hogy melyik *perc*:*másodperc* pontnál kezdődik egy adott fejezet, majd szóköz-kötőjel-szóköz karaktereket téve írjuk be a rész címét (pl.: 22:47 - Telepités utáni lépések)
    - Sem a percnek, sem a másodpercnek nem kell kétjegyű számnak lennie
    - Nem kell a 60-as váltószámot betartani
+   - a címben lehet 
 
 Példa:
 
