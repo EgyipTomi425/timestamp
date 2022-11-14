@@ -1,6 +1,5 @@
 body
 {
-    background-color: black;
     background-image: url("youtube.png");
     background-position: center top;
     background-size: 100% auto;
@@ -12,12 +11,20 @@ table.main
 {
     text-align: center;
     margin: 1em auto;
+    box-shadow: 0 0 0.5em 0.5em gold;
+    border: thin solid yellow;
+    border-radius: 0.25em;
 }
 
 table.main thead tr th
 {
     font-style: bold;
     color: greenyellow;
+}
+
+table.main thead tr:last-child th
+{
+    border-bottom: medium solid red;
 }
 
 table.main tbody:before 
@@ -28,6 +35,10 @@ table.main tbody:before
     font-size: 0;
 }
 
+table.main tbody tr:nth-child(2n)
+{
+    color: aqua;
+}
 
 table.main tbody
 {
@@ -39,7 +50,12 @@ table.main tbody tr th:nth-child(2)
     font-style: bold;
 }
 
-table.main tbody tr th:first-child
+table.main tbody tr td, table.main tbody tr th
 {
-    margin-top: 10em;
+    border-bottom: thin solid black;
+}
+
+table.main tbody tr:last-child td, table.main tbody tr:last-child th
+{
+    border-bottom: none;
 }
