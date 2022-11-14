@@ -5,6 +5,7 @@ from pickle import TRUE
 import webbrowser
 import os
 import requests
+import json
 
 def time_calculate(list_of_touple):
     index=0
@@ -95,6 +96,21 @@ def secconvert(string):
                     else:
                         return ora + ":" + str(int(time/60)) + ":" + str((time-int(time/60)*60))
 
+def sorgen(ido,cim,link):
+    return '''
+            <tr>
+                <td>''' + ido + '''</td>
+                <th>''' + cim + '''</th>
+                <td><a target="_blank" rel="noopener noreferrer" href="''' + link + '''">'''+ link + '''</a></td>
+            </tr>
+            '''
+
+def listagen(list_of_touple):
+    kimenet=""
+    for i in list_of_touple:
+        kimenet=kimenet+sorgen(i[0],i[1],i[2])
+    return kimenet
+
 def main():
     bemenet=open("bemenet.txt", "r", encoding='utf8')
     url=bemenet.readline()[0:-1]
@@ -112,16 +128,50 @@ def main():
     time_calculate(info)
     link_calculate(info,url)
     
+    with open(os.path.dirname(__file__) + "\media\kimenet.json", 'r') as json_file:
+        json_load = json.load(json_file)
+    
     szovegkimenet = open('szovegkimenet.txt', 'w')
+    line=' '.join("Cím: " + json_load["title"])
+    szovegkimenet.write(line + '\n' + '\n')
     for i in info:
         line=' '.join(str(x) for x in i)
         szovegkimenet.write(line + '\n')
     szovegkimenet.close()
     
+    htmlkimenet='''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./media/megjelenito.css">
+    <title>YouTube Timestamp</title>
+</head>
+<body>
+    <table class="main">
+        <thead>
+            <tr>
+                <th colspan="3">Menyhárt Tamás</th>
+            </tr>
+            <tr>
+                <td colspan="3"><a target="_blank" rel="noopener noreferrer" href="''' + url + '''">''' + url + '''</a></td>
+            </tr>
+            <tr>
+                <th colspan="3">''' + json_load["title"] + '''</>
+            </tr>
+        </thead>
+        <tbody>'''
+    htmlkimenet=htmlkimenet + listagen(info)
+    htmlkimenet=htmlkimenet + '''</tbody>
+    </table>
+</body>
+</html>'''
+    
     kimenet=open("kimenet.html", "w", encoding='utf8')
-    kimenet.write("")
+    kimenet.write(htmlkimenet)
     kimenet.close()
-    #webbrowser.open(os.path.dirname(__file__) + "\kimenet.html")
+    webbrowser.open(os.path.dirname(__file__) + "\kimenet.html")
 
 if __name__=="__main__":
     main()

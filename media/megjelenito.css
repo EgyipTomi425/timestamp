@@ -1,0 +1,45 @@
+body
+{
+    background-color: black;
+    background-image: url("youtube.png");
+    background-position: center top;
+    background-size: 100% auto;
+    color: aquamarine;
+    font-size: xx-large;
+}
+
+table.main
+{
+    text-align: center;
+    margin: 1em auto;
+}
+
+table.main thead tr th
+{
+    font-style: bold;
+    color: greenyellow;
+}
+
+table.main tbody:before 
+{
+    line-height:1em;
+    content:".";
+    color: black;
+    font-size: 0;
+}
+
+
+table.main tbody
+{
+    font-size: x-large;
+}
+
+table.main tbody tr th:nth-child(2)
+{
+    font-style: bold;
+}
+
+table.main tbody tr th:first-child
+{
+    margin-top: 10em;
+}
